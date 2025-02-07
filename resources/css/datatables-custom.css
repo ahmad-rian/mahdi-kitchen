@@ -1,0 +1,33 @@
+/* resources/css/datatables-custom.css */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+    margin: 1rem 0;
+}
+
+.dataTables_processing {
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    z-index: 100;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+.dataTables_empty {
+    padding: 2rem !important;
+    text-align: center;
+    color: hsl(var(--muted-foreground));
+}

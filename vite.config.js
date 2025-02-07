@@ -10,4 +10,9 @@ export default defineConfig({
         }),
         react(),
     ],
+    resolve: {
+        alias: {
+            'datatables-css': 'datatables.net-dt/css/dataTables.dataTables.css',
+        },
+    },
 });
