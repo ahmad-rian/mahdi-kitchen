@@ -71,30 +71,30 @@ const ProductForm = ({ product = null, categories = [] }) => {
             <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <Label htmlFor="category_id">Category</Label>
-                            <Select 
-    value={data.kategori_id ? data.kategori_id.toString() : ''} 
-    onValueChange={value => setData('kategori_id', value)}
->
-    <SelectTrigger>
-        <SelectValue placeholder="Select category" />
-    </SelectTrigger>
-    <SelectContent>
-        {categories.map(category => (
-            <SelectItem 
-                key={category.id} 
-                value={category.id.toString()}
-            >
-                {category.name}
-            </SelectItem>
-        ))}
-    </SelectContent>
-</Select>
-                            {errors.category_id && (
-                                <p className="text-sm text-red-500">{errors.category_id}</p>
-                            )}
-                        </div>
+                    <div className="space-y-2">
+    <Label htmlFor="kategori_id">Category</Label>
+    <Select 
+        value={data.kategori_id ? data.kategori_id.toString() : ''} 
+        onValueChange={value => setData('kategori_id', value)}
+    >
+        <SelectTrigger>
+            <SelectValue placeholder="Select category" />
+        </SelectTrigger>
+        <SelectContent>
+            {categories.map(category => (
+                <SelectItem 
+                    key={category.id} 
+                    value={category.id.toString()}
+                >
+                    {category.name}
+                </SelectItem>
+            ))}
+        </SelectContent>
+    </Select>
+    {errors.kategori_id && (
+        <p className="text-sm text-red-500">{errors.kategori_id}</p>
+    )}
+</div>
 
                         <div className="space-y-2">
                             <Label htmlFor="name">Name</Label>

@@ -38,7 +38,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-b from-base-200 to-base-300">
       <div className="max-w-7xl mx-auto">
         {/* Newsletter Section */}
-        <div className="py-12 px-4">
+        {/* <div className="py-12 px-4">
           <div className="bg-base-100 rounded-2xl p-8 shadow-xl">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex-1">
@@ -62,7 +62,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 px-4 py-16">

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('produks_id')->constrained()->onDelete('cascade');
+            $table->foreignId('produk_id')->constrained()->onDelete('cascade');
             $table->integer('rating'); // 1-5 bintang
             $table->text('comment');
             $table->boolean('is_verified')->default(false); // untuk verifikasi pembeli

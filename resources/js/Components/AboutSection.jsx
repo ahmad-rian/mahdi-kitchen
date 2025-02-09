@@ -116,7 +116,7 @@ const AboutSection = () => {
           <motion.div variants={itemVariants} className="relative order-2 lg:order-1">
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/api/placeholder/800/800"
+                src="/assets/workshop.jpg"
                 alt="Our Workshop"
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
               />

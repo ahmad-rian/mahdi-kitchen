@@ -6,10 +6,12 @@ use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\PublicProdukController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 // Public Routes
@@ -30,7 +32,20 @@ Route::get('/', function () {
         'categories' => \App\Models\Kategori::withCount('products')
             ->get()
     ]);
-});
+})->name('welcome');;
+
+Route::get('storage/products/{filename}', function ($filename) {
+    $path = storage_path('app/public/products/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path, [
+        'Content-Type' => mime_content_type($path),
+        'Cache-Control' => 'public, max-age=3600',
+    ]);
+})->where('filename', '.*');
 
 Route::get('/about', function () {
     return Inertia::render('About', []);
@@ -40,34 +55,38 @@ Route::get('/contact', function () {
     return Inertia::render('Contact', []);
 })->name('contact');
 
-// Public Product Routes
-Route::get('/products', [PublicProdukController::class, 'index'])->name('products.index');
-Route::get('/products/category/{kategori:slug}', [PublicProdukController::class, 'byCategory'])->name('products.category');
-Route::get('/products/{produk:slug}', [PublicProdukController::class, 'show'])->name('products.show');
 
-// // Contact Routes
-// Route::get('/contact', function () {
-//     return Inertia::render('Contact');
-// })->name('contact');
-// Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('products', [ProductController::class, 'index'])->name('products.index');
+Route::get('products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
+Route::get('api/featured-products', [ProductController::class, 'featured'])->name('api.products.featured');
 
-// // About Page
-// Route::get('/about', function () {
-//     return Inertia::render('About');
-// })->name('about');
+
 
 // Authenticated User Routes
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/user/profile', [UserProfileController::class, 'edit'])->name('user-profile.edit');
+    Route::patch('/user/profile', [UserProfileController::class, 'update'])->name('user-profile.update');
+    Route::put('/user/profile/password', [UserProfileController::class, 'updatePassword'])->name('user-profile.password.update');
+    Route::delete('/user/profile', [UserProfileController::class, 'destroy'])->name('user-profile.destroy');
+
     // User Reviews
+
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+    Route::post('products/{product}/reviews', [ProductController::class, 'storeReview'])
+        ->name('products.reviews.store');
+
+    Route::post('products/{product}/reviews', [ReviewController::class, 'store'])->name('products.reviews.store');
 });
 
 // Admin Routes
@@ -80,7 +99,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('categories', KategoriController::class);
 
     // Products Management
-    Route::get('/products/data', [ProdukController::class, 'getData'])->name('products.data');
+    Route::get('/products/data', [ProdukController::class, 'data'])->name('products.data');
     Route::resource('products', ProdukController::class);
 
     // Reviews Management

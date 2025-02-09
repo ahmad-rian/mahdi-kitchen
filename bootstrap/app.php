@@ -26,12 +26,12 @@ return Application::configure(basePath: dirname(__DIR__))
             return $request->user()->role === 'admin' ? '/admin/dashboard' : '/';
         });
     })
-    ->withProviders([
-        \Intervention\Image\ImageServiceProvider::class,
-    ])
-    ->withBindings([
-        'Image' => \Intervention\Image\Facades\Image::class,
-    ])
+    // ->withProviders([
+    //     \Intervention\Image\ImageServiceProvider::class,
+    // ])
+    // ->withBindings([
+    //     'Image' => \Intervention\Image\Facades\Image::class,
+    // ])
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();

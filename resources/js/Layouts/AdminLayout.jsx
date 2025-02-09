@@ -35,7 +35,7 @@ const AdminLayout = ({ children }) => {
 
     const menuItems = [
         {
-            title: 'Dasbor',
+            title: 'Dasboard',
             href: route('admin.dashboard'),
             icon: LayoutGrid
         },

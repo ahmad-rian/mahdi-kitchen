@@ -10,6 +10,8 @@ import {
   Phone,
   UserPlus,
   LogIn,
+  LogOut,
+  User,
   Home
 } from 'lucide-react';
 
@@ -30,11 +32,27 @@ const Navbar = ({ auth }) => {
     setIsOpen(false);
   }, [auth?.user]);
 
+  // Check if user is admin
+  const isAdmin = auth?.user?.role === 'admin';
+
+  // Get profile route based on user role
+  const getProfileRoute = () => {
+    if (!auth?.user) return route('login');
+    // Use admin.profile.edit for admin, user-profile.edit for regular users
+    return isAdmin ? '/admin/profile' : route('user-profile.edit');
+  };
+
+  // Get dashboard route based on user role
+  const getDashboardRoute = () => {
+    if (!auth?.user) return route('login');
+    return isAdmin ? route('admin.dashboard') : route('dashboard');
+  };
+
   const navLinks = [
     { href: '/', label: 'Home', icon: <Home size={18} /> },
-    { href: '/about', label: 'About', icon: <Info size={18} /> },
-    { href: '/products', label: 'Products', icon: <ShoppingBag size={18} /> },
-    { href: '/contact', label: 'Contact', icon: <Phone size={18} /> },
+    { href: route('about'), label: 'About', icon: <Info size={18} /> },
+    { href: route('products.index'), label: 'Products', icon: <ShoppingBag size={18} /> },
+    { href: route('contact'), label: 'Contact', icon: <Phone size={18} /> },
   ];
 
   return (
@@ -89,23 +107,33 @@ const Navbar = ({ auth }) => {
                   </div>
                 </div>
                 <ul tabIndex={0} className="mt-3 z-[100] p-2 shadow-xl menu menu-sm dropdown-content bg-white rounded-xl w-56 font-medium">
+                 
                   <li>
-                    <Link href="/dashboard" className="justify-between">
-                      Dashboard
-                      <span className="badge badge-primary badge-sm">New</span>
+                    <Link href={getProfileRoute()} className="flex items-center gap-2">
+                      <User size={18} />
+                      Profile
                     </Link>
                   </li>
-                  <li><Link href="/profile">Profile</Link></li>
-                  <li><Link href="/logout" method="post" as="button">Logout</Link></li>
+                  <li>
+                    <Link 
+                      href={route('logout')} 
+                      method="post" 
+                      as="button"
+                      className="flex items-center gap-2 text-red-600 hover:text-red-700"
+                    >
+                      <LogOut size={18} />
+                      Logout
+                    </Link>
+                  </li>
                 </ul>
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <Link href="/login" className="btn btn-ghost btn-sm gap-2">
+                <Link href={route('login')} className="btn btn-ghost btn-sm gap-2">
                   <LogIn size={18} />
                   Login
                 </Link>
-                <Link href="/register" className="btn btn-primary btn-sm gap-2">
+                <Link href={route('register')} className="btn btn-primary btn-sm gap-2">
                   <UserPlus size={18} />
                   Register
                 </Link>
@@ -136,6 +164,27 @@ const Navbar = ({ auth }) => {
           >
             <div className="container mx-auto px-4 py-4">
               <ul className="menu w-full space-y-2">
+                {/* User Info for Mobile - Show when logged in */}
+                {auth?.user && (
+                  <>
+                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg mb-4">
+                      <div className="avatar">
+                        <div className="w-10 rounded-full">
+                          <img 
+                            src={auth.user.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${auth.user.name}`} 
+                            alt="avatar" 
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <p className="font-medium">{auth.user.name}</p>
+                        <p className="text-sm text-gray-500">{auth.user.email}</p>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* Navigation Links */}
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link 
@@ -149,16 +198,49 @@ const Navbar = ({ auth }) => {
                   </li>
                 ))}
 
-                {/* Divider */}
-                {!auth?.user && (
-                  <div className="divider my-4"></div>
-                )}
-
-                {!auth?.user && (
+                {/* Auth Links */}
+                {auth?.user ? (
                   <>
+                    <div className="divider my-4"></div>
                     <li>
                       <Link 
-                        href="/login"
+                        href={getDashboardRoute()}
+                        className="flex items-center gap-2 p-3 hover:bg-gray-100 rounded-lg text-gray-700"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Home size={18} />
+                        <span className="font-medium">Dashboard</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link 
+                        href={getProfileRoute()}
+                        className="flex items-center gap-2 p-3 hover:bg-gray-100 rounded-lg text-gray-700"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <User size={18} />
+                        <span className="font-medium">Profile</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link 
+                        href={route('logout')}
+                        method="post"
+                        as="button"
+                        className="flex items-center gap-2 p-3 hover:bg-red-50 rounded-lg text-red-600 w-full"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <LogOut size={18} />
+                        <span className="font-medium">Logout</span>
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <div className="divider my-4"></div>
+                    <li>
+                      <Link 
+                        href={route('login')}
                         className="flex items-center gap-2 p-3 bg-gray-50 hover:bg-gray-100 rounded-lg text-gray-700"
                         onClick={() => setIsOpen(false)}
                       >
@@ -168,7 +250,7 @@ const Navbar = ({ auth }) => {
                     </li>
                     <li>
                       <Link 
-                        href="/register"
+                        href={route('register')}
                         className="flex items-center gap-2 p-3 bg-primary text-white hover:bg-primary-focus rounded-lg"
                         onClick={() => setIsOpen(false)}
                       >

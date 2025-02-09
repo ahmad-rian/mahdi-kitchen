@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Yajra\DataTables\Facades\DataTables;
+
 
 class ReviewController extends Controller
 {
@@ -17,14 +19,14 @@ class ReviewController extends Controller
 
     public function getData()
     {
-        $reviews = Review::with(['user', 'product']);
+        $reviews = Review::with(['user', 'produk']);
 
         return DataTables::of($reviews)
             ->addColumn('user_name', function ($review) {
                 return $review->user->name;
             })
-            ->addColumn('product_name', function ($review) {
-                return $review->product->name;
+            ->addColumn('produk_name', function ($review) {
+                return $review->produk->name;
             })
             ->addColumn('created_at_formatted', function ($review) {
                 return $review->created_at->format('d M Y H:i');
@@ -63,19 +65,32 @@ class ReviewController extends Controller
     }
 
     // Method untuk frontend user
-    public function store(Request $request)
+    public function store(Request $request, Produk $product)
     {
-        $validated = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'rating' => 'required|integer|between:1,5',
-            'comment' => 'required|string|max:1000',
-        ]);
+        try {
+            $validated = $request->validate([
+                'rating' => 'required|integer|between:1,5',
+                'comment' => 'required|string|max:1000',
+            ]);
 
-        $review = $request->user()->reviews()->create([
-            ...$validated,
-            'is_verified' => false // default unverified
-        ]);
+            // Check if user already reviewed
+            if ($product->reviews()->where('user_id', $request->user()->id)->exists()) {
+                return back()->withErrors(['error' => 'You have already reviewed this product']);
+            }
 
-        return back()->with('success', 'Review submitted successfully');
+            $review = $product->reviews()->create([
+                'user_id' => $request->user()->id,
+                'rating' => $validated['rating'],
+                'comment' => $validated['comment'],
+                'is_verified' => false
+            ]);
+
+            return back()->with('message', [
+                'type' => 'success',
+                'text' => 'Review submitted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Failed to submit review']);
+        }
     }
 }

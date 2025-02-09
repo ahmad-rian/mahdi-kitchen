@@ -27,7 +27,7 @@ export default function Welcome({ auth = {}, products = [] }) {
         <main>
           <HeroSection />
           <FeaturesSection />
-          <ProductsPreviewSection products={products} />
+          {/* <ProductsPreviewSection products={products} /> */}
           <AboutSection />
           <TestimonialsSection />
         </main>
