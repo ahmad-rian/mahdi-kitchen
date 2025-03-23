@@ -8,9 +8,12 @@ import {
     Users,
     LogOut,
     User,
-    Settings,
+    Home,
+    ChevronDown,
     ChefHat
 } from 'lucide-react';
+
+// Import Shadcn UI components
 import { Button } from '@/Components/ui/button';
 import {
     Sheet,
@@ -28,12 +31,31 @@ import {
 import { Separator } from "@/Components/ui/separator";
 import { Toaster } from "@/Components/ui/toaster";
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar";
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from "@/Components/ui/collapsible";
+import { ScrollArea } from "@/Components/ui/scroll-area";
 
 const AdminLayout = ({ children }) => {
     const { auth } = usePage().props;
     const { url } = usePage();
 
-    const menuItems = [
+    // Get user initials for avatar fallback
+    const getInitials = (name) => {
+        return name
+            .split(' ')
+            .map(word => word[0])
+            .join('')
+            .toUpperCase();
+    };
+
+    // Check if the current route is active
+    const isActive = (path) => url.startsWith(path);
+
+    // Sidebar navigation items
+    const navItems = [
         {
             title: 'Dasboard',
             href: route('admin.dashboard'),
@@ -61,174 +83,152 @@ const AdminLayout = ({ children }) => {
         }
     ];
 
-    const isActive = (path) => url.startsWith(path);
-    const getInitials = (name) => name.split(' ').map(word => word[0]).join('').toUpperCase();
+    // Navigation Item Component
+    const NavItem = ({ item }) => (
+        <Link href={item.href} className="w-full">
+            <Button
+                variant={isActive(item.href) ? "secondary" : "ghost"}
+                className={`w-full justify-start gap-2 p-2 ${isActive(item.href) ? 'font-medium' : ''}`}
+            >
+                <item.icon size={18} />
+                <span>{item.title}</span>
+            </Button>
+        </Link>
+    );
 
+    // User Dropdown Component
     const UserNav = () => (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <div className="flex items-center gap-3">
-                    <Button variant="ghost" className="relative h-12 w-12 lg:h-14 lg:w-14 rounded-full p-0">
-                        <Avatar className="h-12 w-12 lg:h-14 lg:w-14 border-2 border-blue-500">
-                            <AvatarImage 
-                                src={auth.user.avatar || '/default-avatar.png'} 
-                                alt={auth.user.name} 
-                            />
-                            <AvatarFallback className="bg-blue-100 text-blue-600 text-base lg:text-lg font-bold">
-                                {getInitials(auth.user.name)}
-                            </AvatarFallback>
-                        </Avatar>
-                    </Button>
-                    <div className="hidden lg:flex flex-col">
-                        <span className="text-base font-semibold text-gray-800">{auth.user.name}</span>
-                        <span className="text-sm text-gray-500">{auth.user.email}</span>
-                    </div>
-                </div>
+                <Button variant="ghost" className="h-9 w-9 rounded-full p-0">
+                    <Avatar>
+                        <AvatarImage 
+                            src={auth.user.avatar || '/default-avatar.png'} 
+                            alt={auth.user.name} 
+                        />
+                        <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+                            {getInitials(auth.user.name)}
+                        </AvatarFallback>
+                    </Avatar>
+                    <span className="sr-only">User menu</span>
+                </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-80" align="end">
+            <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>
-                    <div className="flex items-center space-x-3 p-3">
-                        <Avatar className="h-14 w-14 border-2 border-blue-500">
-                            <AvatarImage 
-                                src={auth.user.avatar || '/default-avatar.png'} 
-                                alt={auth.user.name} 
-                            />
-                            <AvatarFallback className="bg-blue-100 text-blue-600 text-lg font-bold">
-                                {getInitials(auth.user.name)}
-                            </AvatarFallback>
-                        </Avatar>
-                        <div className="flex flex-col">
-                            <p className="text-base font-semibold text-gray-800">
-                                {auth.user.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                                {auth.user.email}
-                            </p>
-                        </div>
+                    <div className="flex flex-col space-y-1">
+                        <p className="text-sm font-medium leading-none">{auth.user.name}</p>
+                        <p className="text-xs leading-none text-muted-foreground">{auth.user.email}</p>
                     </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <div className="p-2">
-                    <DropdownMenuItem asChild>
-                        <Link 
-                            href={route('profile.edit')} 
-                            className="cursor-pointer hover:bg-gray-100 p-3 rounded-lg"
-                        >
-                            <User className="mr-3 h-6 w-6 text-blue-600" />
-                            <span className="text-lg">Pengaturan Profil</span>
-                        </Link>
-                    </DropdownMenuItem>
-                    {/* <DropdownMenuItem asChild>
-                        <Link 
-                            href={route('profile.edit')} 
-                            className="cursor-pointer hover:bg-gray-100 p-3 rounded-lg"
-                        >
-                            <Settings className="mr-3 h-6 w-6 text-green-600" />
-                            <span className="text-lg">Pengaturan Akun</span>
-                        </Link>
-                    </DropdownMenuItem> */}
-                </div>
+                <DropdownMenuItem asChild>
+                    <Link href={route('profile.edit')} className="flex w-full items-center">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>Profil</span>
+                    </Link>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <div className="p-2">
-                    <DropdownMenuItem asChild>
-                        <Link
-                            href={route('logout')}
-                            method="post"
-                            as="button"
-                            className="w-full cursor-pointer hover:bg-red-50 p-3 rounded-lg"
-                        >
-                            <LogOut className="mr-3 h-6 w-6 text-red-600" />
-                            <span className="text-lg text-red-600">Keluar</span>
-                        </Link>
-                    </DropdownMenuItem>
-                </div>
+                <DropdownMenuItem asChild>
+                    <Link
+                        href={route('logout')}
+                        method="post"
+                        as="button"
+                        className="flex w-full items-center"
+                    >
+                        <LogOut className="mr-2 h-4 w-4" />
+                        <span>Keluar</span>
+                    </Link>
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );
 
+    // Sidebar Content Component
     const SidebarContent = () => (
-        <div className="h-full flex flex-col">
-            <div className="space-y-6 py-6">
-                <div className="px-6">
-                    <div className="mb-8 flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
-                            <ChefHat className="h-12 w-12 text-blue-600" />
-                            <h2 className="text-3xl font-bold tracking-tight text-gray-800">
-                                Dasbor Admin
-                            </h2>
-                        </div>
-                        <div className="lg:hidden">
-                            <UserNav />
-                        </div>
-                    </div>
-                    <div className="space-y-3">
-                        {menuItems.map((item) => (
-                            <Link key={item.href} href={item.href}>
-                                <Button
-                                    variant={isActive(item.href) ? "secondary" : "ghost"}
-                                    className="w-full justify-start text-lg py-6"
-                                >
-                                    <item.icon className="mr-4 h-6 w-6" />
-                                    {item.title}
-                                </Button>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
+        <div className="flex h-full flex-col">
+            {/* Logo and brand */}
+            <div className="flex h-16 items-center border-b px-4">
+                <Link href={route('admin.dashboard')} className="flex items-center gap-2 font-semibold">
+                    <ChefHat className="h-6 w-6 text-primary" />
+                    <span>Binggo Kitchen</span>
+                </Link>
             </div>
-            <Separator />
-            <div className="mt-auto p-6">
-                <div className="mb-4 hidden lg:block">
-                    <UserNav />
+            
+            {/* Navigation items */}
+            <ScrollArea className="flex-1 px-3 py-2">
+                <div className="space-y-1">
+                    {navItems.map((item) => (
+                        <NavItem key={item.href} item={item} />
+                    ))}
+                </div>
+            </ScrollArea>
+            
+            {/* Footer area without profile info */}
+            <div className="border-t p-4">
+                <div className="flex items-center justify-center">
+                    <div className="text-xs text-muted-foreground">
+                        © {new Date().getFullYear()} Binggo Kitchen
+                    </div>
                 </div>
             </div>
         </div>
     );
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            {/* Mobile Header */}
-            <div className="lg:hidden border-b bg-white shadow-sm">
-                <div className="flex h-20 items-center justify-between px-6">
-                    <div className="flex items-center">
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button variant="ghost" size="icon" className="lg:hidden">
-                                    <Menu className="h-8 w-8" />
-                                    <span className="sr-only">Buka sidebar</span>
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="left" className="w-80 p-0">
-                                <SidebarContent />
-                            </SheetContent>
-                        </Sheet>
-                        <div className="ml-4 text-2xl font-semibold text-gray-800 flex items-center">
-                            <ChefHat className="mr-3 h-8 w-8 text-blue-600" />
-                            Dasbor Admin
-                        </div>
-                    </div>
-                    <UserNav />
-                </div>
+        <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr] md:grid-cols-[240px_1fr]">
+            {/* Desktop sidebar - hidden on mobile */}
+            <div className="hidden border-r bg-background md:block">
+                <SidebarContent />
             </div>
-
-            {/* Desktop Layout */}
-            <div className="flex">
-                {/* Desktop Sidebar */}
-                <div className="hidden lg:flex lg:w-80 lg:flex-col lg:fixed lg:inset-y-0">
-                    <div className="flex flex-col h-full border-r bg-white shadow-lg">
-                        <SidebarContent />
+            
+            {/* Main content area */}
+            <div className="flex flex-col">
+                {/* Mobile header - hidden on desktop - rearranged for right-positioned avatar */}
+                <header className="sticky top-0 z-30 flex h-16 items-center border-b bg-background px-4 md:hidden">
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <Button variant="outline" size="icon" className="h-9 w-9">
+                                <Menu className="h-5 w-5" />
+                                <span className="sr-only">Toggle menu</span>
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="left" className="p-0 w-64">
+                            <SidebarContent />
+                        </SheetContent>
+                    </Sheet>
+                    
+                    <div className="flex items-center gap-2 ml-4">
+                        <ChefHat className="h-6 w-6 text-primary" />
+                        <span className="font-semibold">Binggo Admin</span>
                     </div>
-                </div>
-
-                {/* Main Content */}
-                <div className="lg:pl-80 flex-1">
-                    <main className="py-8">
-                        <div className="px-6 lg:px-10 max-w-6xl mx-auto">
-                            {children}
+                    
+                    <div className="ml-auto">
+                        <UserNav />
+                    </div>
+                </header>
+                
+                {/* Desktop header - enhanced and always visible on desktop */}
+                <header className="sticky top-0 z-30 hidden md:flex h-16 items-center justify-between border-b bg-background px-8">
+                    <div className="flex items-center gap-2">
+                        <span className="font-semibold text-lg">Binggo Admin</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                        <div className="text-sm text-muted-foreground hidden lg:block">
+                            {auth.user.name}
                         </div>
-                    </main>
-                </div>
+                        <UserNav />
+                    </div>
+                </header>
+                
+                {/* Content area with responsive padding */}
+                <main className="flex-1">
+                    <div className="container mx-auto p-4 md:p-6 lg:p-8 max-w-7xl">
+                        {children}
+                    </div>
+                </main>
             </div>
+            
             <Toaster />
         </div>
     );

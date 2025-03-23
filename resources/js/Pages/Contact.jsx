@@ -1,4 +1,3 @@
-// resources/js/Pages/Contact.jsx
 import React from 'react';
 import { Head } from '@inertiajs/react';
 import { motion } from 'framer-motion';
@@ -8,7 +7,8 @@ import {
   MapPin, 
   Clock, 
   Instagram,
-  Facebook
+  Facebook,
+  Youtube // Tambahkan YouTube icon
 } from 'lucide-react';
 import Navbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
@@ -18,8 +18,8 @@ const Contact = ({ auth }) => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Telepon",
-      content: "082133222726",
-      link: "tel:082133222726"
+      content: "085726220844",
+      link: "tel:085726220844"
     },
     {
       icon: <Mail className="w-6 h-6" />,
@@ -30,12 +30,12 @@ const Contact = ({ auth }) => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Alamat Workshop",
-      content: "Purwokerto Barat, Belakang Balai Desa Pasir Wetan (Lapangan Volly)",
+      content: "Workshop Kami Di Purwokerto Barat, Belakang Balai Desa Pasir Wetan (Lapangan Proyek)",
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Jam Operasional",
-      content: "Senin - Sabtu: 9:00 - 17:00",
+      content: "Senin - Sabtu: 8:00 - 17:00",
     }
   ];
 
@@ -53,6 +53,13 @@ const Contact = ({ auth }) => {
       username: "@Binggo.surabaya",
       link: "https://facebook.com/Binggo.surabaya",
       bgColor: "bg-blue-600"
+    },
+    {
+      icon: <Youtube className="w-5 h-5" />, // Tambahkan YouTube
+      name: "YouTube",
+      username: "@mahdybinggo1980",
+      link: "http://www.youtube.com/@mahdybinggo1980",
+      bgColor: "bg-red-600"
     }
   ];
 
@@ -147,7 +154,7 @@ const Contact = ({ auth }) => {
                 ))}
               </div>
 
-              {/* Maps Section */}
+              {/* Maps Section - Updated with correct link */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -155,16 +162,16 @@ const Contact = ({ auth }) => {
                 className="card bg-base-100 shadow-xl overflow-hidden"
               >
                 <div className="card-body p-0 aspect-video">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.675474410655!2d109.2133334!3d-7.3833333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655c5b86b6817d%3A0x8c4c4b4c4b4c4b4c!2sPurwokerto%20Barat%2C%20Pasir%20Wetan%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full h-full"
-                  ></iframe>
+                <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3188125853763!2d109.20551641744386!3d-7.4116769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655f00028b245f%3A0x9c55a8a3d0ac09e!2sBinggo%20Complete%20Kitchen!5e0!3m2!1sid!2sid!4v1711099525933!5m2!1sid!2sid"
+  width="100%"
+  height="100%"
+  style={{ border: 0 }}
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+  className="w-full h-full"
+></iframe>
                 </div>
               </motion.div>
             </div>
@@ -245,7 +252,6 @@ const Contact = ({ auth }) => {
         </section>
       </main>
 
-      <Footer />
     </>
   );
 };

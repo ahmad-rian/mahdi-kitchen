@@ -1,4 +1,3 @@
-
 import React from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import DeleteUserForm from './Partials/DeleteUserForm';

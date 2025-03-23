@@ -19,19 +19,19 @@ const About = ({ auth }) => {
   const stats = [
     { 
       label: 'Tahun Pengalaman', 
-      value: '15+',
+      value: '5+',
       icon: <Clock className="w-8 h-8" />,
       color: 'from-blue-500 to-blue-600'
     },
     { 
       label: 'Proyek Selesai', 
-      value: '1000+',
+      value: '250+',
       icon: <Award className="w-8 h-8" />,
       color: 'from-green-500 to-green-600'
     },
     { 
       label: 'Pelanggan Puas', 
-      value: '500+',
+      value: '150+',
       icon: <Users className="w-8 h-8" />,
       color: 'from-purple-500 to-purple-600'
     }
@@ -50,24 +50,24 @@ const About = ({ auth }) => {
   
   const timeline = [
     {
-      year: '2008',
+      year: '2020',
       title: 'Awal Perjalanan',
-      description: 'Berdiri pada tanggal 8 Februari 2008, memulai berbagai macam pekerjaan termasuk Equipment Kitchen dan interior custom.'
+      description: 'Berdiri pada Februari 2020, memulai perjalanan dengan fokus pada Equipment Kitchen dan interior custom berkualitas tinggi.'
     },
     {
-      year: '2008-2015',
+      year: '2020-2021',
       title: 'Ekspansi Layanan',
       description: 'Mengembangkan layanan ke berbagai bidang: Kamar Hotel, Kamar Set, Kitchen Set, Minibar, Backdrop TV, dan konstruksi baja.'
     },
     {
-      year: '2015-2020',
+      year: '2022-2024',
       title: 'Fokus Spesialisasi',
-      description: 'Mulai memfokuskan diri di bidang Equipment Kitchen, mengembangkan keahlian dan kualitas produk.'
+      description: 'Mulai memfokuskan diri di bidang Equipment Kitchen, mengembangkan keahlian khusus dan meningkatkan kualitas produk.'
     },
     {
-      year: '2020-Sekarang',
+      year: '2025-Sekarang',
       title: 'Era Digital',
-      description: 'Mendirikan website untuk memudahkan ORDER Via Online dan memperluas jangkauan melalui media sosial.'
+      description: 'Mendirikan website untuk memudahkan ORDER Via Online dan memperluas jangkauan bisnis melalui berbagai platform media sosial.'
     }
   ];
 
@@ -83,17 +83,17 @@ const About = ({ auth }) => {
   const values = [
     {
       title: 'Kualitas Premium',
-      description: 'Menggunakan material stainless steel food grade terbaik untuk menjamin ketahanan dan keamanan',
+      description: 'Menggunakan material stainless steel food grade terbaik untuk menjamin ketahanan dan keamanan produk kami',
       icon: <Star className="w-6 h-6" />
     },
     {
       title: 'Layanan Custom',
-      description: 'Fleksibilitas dalam desain dan pembuatan sesuai kebutuhan spesifik pelanggan',
+      description: 'Fleksibilitas dalam desain dan pembuatan sesuai kebutuhan spesifik setiap pelanggan',
       icon: <ChefHat className="w-6 h-6" />
     },
     {
       title: 'Garansi Produk',
-      description: 'Jaminan kualitas dengan layanan garansi untuk setiap produk kami',
+      description: 'Jaminan kualitas dengan layanan garansi untuk setiap produk yang kami tawarkan',
       icon: <Award className="w-6 h-6" />
     }
   ];
@@ -101,27 +101,20 @@ const About = ({ auth }) => {
   const whyChooseUs = [
     {
       title: 'Pengalaman & Keahlian',
-      description: 'Lebih dari 15 tahun pengalaman dalam industri peralatan dapur profesional'
+      description: 'Tim profesional dengan keahlian khusus dalam industri peralatan dapur berkualitas tinggi'
     },
     {
       title: 'Kustomisasi Fleksibel',
-      description: 'Desain dan produksi sesuai kebutuhan spesifik bisnis Anda'
+      description: 'Desain dan produksi yang sesuai dengan kebutuhan spesifik bisnis atau rumah Anda'
     },
     {
       title: 'Harga Kompetitif',
-      description: 'Penawaran harga terbaik dengan kualitas premium'
+      description: 'Penawaran harga terbaik dengan kualitas premium tanpa kompromi'
     },
     {
       title: 'Layanan Purnajual',
-      description: 'Dukungan teknis dan garansi untuk ketenangan pikiran Anda'
+      description: 'Dukungan teknis dan garansi produk untuk memberikan ketenangan pikiran Anda'
     }
-  ];
-
-  const socialMedia = [
-    { name: 'Youtube', color: 'bg-red-500' },
-    { name: 'TikTok', color: 'bg-black' },
-    { name: 'Facebook', color: 'bg-blue-600' },
-    { name: 'Instagram', color: 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500' }
   ];
 
   return (
@@ -132,7 +125,7 @@ const About = ({ auth }) => {
 
       <main className="pt-20">
         {/* Hero Section with Animated Background */}
-        <section className="relative py-24 overflow-hidden bg-gradient-to-br from-primary/20 via-base-100 to-primary/10">
+        <section className="relative py-28 overflow-hidden bg-gradient-to-br from-primary/20 via-base-100 to-primary/10">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <motion.div 
             className="absolute top-0 -left-4 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-xl"
@@ -165,11 +158,11 @@ const About = ({ auth }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                <h1 className="text-5xl md:text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
                   Tentang Kami
                 </h1>
-                <p className="text-xl text-base-content/80">
-                  Berdiri sejak 2008, Binggo Complete Kitchen telah menjadi mitra terpercaya 
+                <p className="text-xl text-base-content/80 leading-relaxed">
+                  Berdiri sejak 2020, Binggo Complete Kitchen telah menjadi mitra terpercaya 
                   dalam menyediakan peralatan dapur profesional berkualitas tinggi.
                 </p>
               </motion.div>
@@ -178,7 +171,7 @@ const About = ({ auth }) => {
         </section>
 
         {/* Stats Section */}
-        <section className="py-16 -mt-20">
+        <section className="py-20 -mt-24">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {stats.map((stat, index) => (
@@ -210,9 +203,9 @@ const About = ({ auth }) => {
         </section>
 
         {/* Company Description Section */}
-        <section className="py-20 bg-base-100">
+        <section className="py-24 bg-base-100">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -223,78 +216,80 @@ const About = ({ auth }) => {
                   <div className="absolute -left-4 -top-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
                   <h2 className="text-3xl font-bold relative z-10">Tentang Binggo Complete Kitchen</h2>
                 </div>
-                <div className="space-y-4 text-base-content/80 text-lg leading-relaxed">
-                  <p>
-                    Dengan Binggo Complete Kitchen, nikmati pengalaman memasak yang lebih mudah dan 
-                    menyenangkan. Menggunakan produk kami, Anda dapat meningkatkan efisiensi dan 
-                    kualitas memasak.
+                <div className="space-y-6 text-base-content/80 text-lg leading-relaxed">
+                  <p className="text-justify">
+                    Kami Binggo Complete Kitchen bergerak di bidang Industri Equipment Kitchen. Kami mengerjakan pembuatan peralatan dapur Stainless Steel 304, baik peralatan mekanik maupun manual. Produk kami meliputi Microwave, Kompor, Oven, Mesin Penggilingan Daging, Meja Stainless, Sink, dan berbagai peralatan dapur profesional lainnya.
                   </p>
-                  <div className="pl-4 border-l-4 border-primary">
+                  <p className="text-justify">
+                    Workshop kami berlokasi di Purwokerto Barat dan kami menerima pekerjaan Equipment Kitchen di seluruh Indonesia. Kami berkomitmen untuk memberikan produk berkualitas dengan layanan terbaik.
+                  </p>
+                  <div className="pl-5 border-l-4 border-primary rounded">
                     <p className="font-medium text-base-content">
                       Kami menawarkan berbagai peralatan dapur stainless steel yang terbuat dari material:
                     </p>
-                    <ul className="mt-2 space-y-2">
-                      {['Besi Stainless steel food grade terbaik', 'Plat Stainless Terbaik', 'Kitchen Set Stainless Steel terbaik'].map((item, index) => (
+                    <ul className="mt-3 space-y-3">
+                      {features.map((item, index) => (
                         <motion.li
                           key={index}
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className="flex items-center gap-2"
+                          className="flex items-center gap-3"
                         >
-                          <div className="w-2 h-2 rounded-full bg-primary"></div>
-                          {item}
+                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                          <span>{item}</span>
                         </motion.li>
                       ))}
                     </ul>
                   </div>
                 </div>
               </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
+                
+              <motion.div 
+                initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-2 gap-4"
+                className="relative rounded-xl overflow-hidden shadow-2xl"
               >
-                {businessTypes.map((item, index) => (
-                  <motion.div
-                    key={item}
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-base-200 p-6 rounded-xl shadow-lg"
-                  >
-                    <div className="p-3 bg-primary/10 rounded-lg w-fit mb-3">
-                      <ChefHat className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="font-semibold">{item}</h3>
-                  </motion.div>
-                ))}
+                {/* Replace this with your actual company image */}
+                <img 
+                  src="/assets/mahdi.jpeg" 
+                  alt="Binggo Complete Kitchen Workshop" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                  <h3 className="text-white text-xl font-semibold">Workshop Binggo Complete Kitchen</h3>
+                  <p className="text-white/80">Purwokerto Barat</p>
+                </div>
               </motion.div>
+              
             </div>
           </div>
         </section>
 
         {/* History Timeline Section */}
-        <section className="py-20 bg-base-200">
+        <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-center mb-12"
+                className="text-center mb-16"
               >
-                <h2 className="text-3xl font-bold mb-4">Perjalanan Kami</h2>
-                <p className="text-base-content/70">
-                  Sejak 2008, kami terus berkembang dan berinovasi untuk memberikan 
+                <h2 className="text-4xl font-bold mb-6">Perjalanan Kami</h2>
+                <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+                  Sejak 2020, kami terus berkembang dan berinovasi untuk memberikan 
                   yang terbaik bagi pelanggan kami.
                 </p>
               </motion.div>
 
               <div className="relative">
-                <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"></div>
+                {/* Vertical Line */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/50 rounded-full"></div>
                 
-                <div className="space-y-12">
+                {/* Timeline Items */}
+                <div className="space-y-24">
                   {timeline.map((item, index) => (
                     <motion.div
                       key={item.year}
@@ -302,23 +297,32 @@ const About = ({ auth }) => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.2 }}
-                      className={`flex items-center gap-8 ${
-                        index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                      }`}
+                      className="relative"
                     >
-                      <div className="w-1/2 text-right">
-                        <div className={`space-y-2 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                          <div className="text-primary font-bold text-xl">{item.year}</div>
-                          <h3 className="font-semibold text-lg">{item.title}</h3>
-                          <p className="text-base-content/70">{item.description}</p>
+                      {/* Year Label - Centered */}
+                      <div className="absolute left-1/2 transform -translate-x-1/2 -top-10">
+                        <div className="bg-primary text-white px-6 py-2 rounded-full font-bold text-lg shadow-md">
+                          {item.year}
                         </div>
                       </div>
-                      <div className="relative flex items-center justify-center w-12">
-                        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white relative z-10">
-                          <ChefHat className="w-6 h-6" />
+                      
+                      {/* Content Row */}
+                      <div className={`flex flex-col md:flex-row ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+                        {/* Timeline Node */}
+                        <div className="absolute left-1/2 top-0 transform -translate-x-1/2">
+                          <div className="w-12 h-12 rounded-full bg-white border-4 border-primary flex items-center justify-center relative z-10 shadow-lg">
+                            <ChefHat className="w-6 h-6 text-primary" />
+                          </div>
+                        </div>
+                        
+                        {/* Content Card */}
+                        <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'} mt-10 md:mt-0`}>
+                          <div className="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 className="font-semibold text-xl text-gray-800 mb-3">{item.title}</h3>
+                            <p className="text-gray-600">{item.description}</p>
+                          </div>
                         </div>
                       </div>
-                      <div className="w-1/2"></div>
                     </motion.div>
                   ))}
                 </div>
@@ -328,15 +332,15 @@ const About = ({ auth }) => {
         </section>
 
         {/* Values Section */}
-        <section className="py-16 bg-base-100">
+        <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Nilai-Nilai Kami</h2>
-              <p className="text-base-content/70 max-w-2xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-6">Nilai-Nilai Kami</h2>
+              <p className="text-gray-700 max-w-2xl mx-auto text-lg">
                 Komitmen kami untuk memberikan produk dan layanan terbaik
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
               {values.map((value, index) => (
                 <motion.div
                   key={value.title}
@@ -344,16 +348,16 @@ const About = ({ auth }) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
-                  className="card bg-base-200 hover:shadow-xl transition-shadow"
+                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                 >
-                  <div className="card-body">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 bg-primary text-primary-content rounded-xl">
+                  <div className="p-8">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="p-4 bg-primary text-white rounded-xl">
                         {value.icon}
                       </div>
-                      <h3 className="card-title">{value.title}</h3>
+                      <h3 className="text-xl font-semibold text-gray-800">{value.title}</h3>
                     </div>
-                    <p className="text-base-content/70">{value.description}</p>
+                    <p className="text-gray-600 text-justify">{value.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -361,66 +365,95 @@ const About = ({ auth }) => {
           </div>
         </section>
 
-        {/* Services Showcase
-        <section className="py-16 bg-base-200">
+        {/* Company Image Section */}
+        <section className="py-20 bg-base-100">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Layanan Komprehensif</h2>
-              <p className="text-base-content/70 max-w-2xl mx-auto">
-                Dari pembuatan hingga instalasi, kami menyediakan solusi lengkap untuk kebutuhan dapur profesional Anda
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="relative group"
-                >
-                  <div className="aspect-video rounded-xl overflow-hidden">
-                    <img
-                      src={`/api/placeholder/600/400`}
-                      alt={service}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent">
-                      <div className="absolute bottom-0 left-0 p-6 text-white">
-                        <h3 className="text-xl font-semibold mb-2">{service}</h3>
-                        <div className="h-0.5 w-12 bg-primary group-hover:w-24 transition-all duration-300"></div>
-                      </div>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="grid grid-cols-2 gap-6"
+              >
+                {businessTypes.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    whileHover={{ scale: 1.05 }}
+                    className="bg-base-200 p-8 rounded-xl shadow-lg"
+                  >
+                    <div className="p-4 bg-primary/10 rounded-lg w-fit mb-4">
+                      <ChefHat className="w-7 h-7 text-primary" />
                     </div>
+                    <h3 className="font-semibold text-lg">{item}</h3>
+                  </motion.div>
+                ))}
+              </motion.div>
+              
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <h2 className="text-3xl font-bold">Fasilitas Produksi Kami</h2>
+                <p className="text-base-content/80 text-lg text-justify">
+                  Workshop kami dilengkapi dengan peralatan modern dan tim terampil yang siap 
+                  menciptakan peralatan dapur berkualitas tinggi sesuai standar industri. 
+                  Seluruh proses produksi dilakukan dengan teliti dan mengutamakan kualitas 
+                  untuk memastikan kepuasan pelanggan.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-primary w-5 h-5 flex-shrink-0" />
+                    <span>Mesin Presisi</span>
                   </div>
-                </motion.div>
-              ))}
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-primary w-5 h-5 flex-shrink-0" />
+                    <span>Quality Control</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-primary w-5 h-5 flex-shrink-0" />
+                    <span>Tim Terampil</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="text-primary w-5 h-5 flex-shrink-0" />
+                    <span>Material Premium</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
-        </section> */}
-
+        </section>
+        
         {/* Why Choose Us */}
-        <section className="py-16">
+        <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">Mengapa Memilih Kami</h2>
-                <p className="text-base-content/70">
-                  Pengalaman lebih dari 15 tahun dalam industri membuat kami menjadi pilihan tepat untuk kebutuhan dapur profesional Anda
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-bold mb-6">Mengapa Memilih Kami</h2>
+                <p className="text-gray-700 text-lg">
+                  Dedikasi dan komitmen kami dalam memberikan kualitas terbaik membuat kami menjadi 
+                  pilihan tepat untuk kebutuhan dapur profesional Anda
                 </p>
               </div>
-              <div className="grid gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {whyChooseUs.map((item, index) => (
                   <motion.div
                     key={item.title}
                     initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="card bg-base-200 hover:shadow-lg transition-shadow"
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                   >
-                    <div className="card-body">
-                      <h3 className="card-title text-primary">{item.title}</h3>
-                      <p className="text-base-content/70">{item.description}</p>
+                    <div className="p-8">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="p-3 bg-primary/10 rounded-lg">
+                          <CheckCircle className="w-6 h-6 text-primary" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
+                      </div>
+                      <p className="text-gray-600 text-justify">{item.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -429,74 +462,10 @@ const About = ({ auth }) => {
           </div>
         </section>
 
-        {/* Social Media
-        <section className="py-16 bg-base-200">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Media Sosial Kami</h2>
-              <p className="text-base-content/70">
-                Dokumentasi hasil pekerjaan kami dapat dilihat di berbagai platform media sosial
-              </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {socialMedia.map((platform) => (
-                <motion.a
-                  key={platform.name}
-                  href="#"
-                  whileHover={{ y: -5 }}
-                  className={`${platform.color} p-6 rounded-xl text-white text-center shadow-lg`}
-                >
-                  <h3 className="font-semibold text-lg">{platform.name}</h3>
-                  <p className="text-sm opacity-90">Follow Us</p>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </section> */}
-
-        {/* CTA Section
-        <section className="py-16 bg-primary text-primary-content">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl font-bold mb-6">
-                  Siap Meningkatkan Kualitas Dapur Anda?
-                </h2>
-                <p className="text-lg mb-8 opacity-90">
-                  Hubungi kami sekarang untuk konsultasi gratis mengenai kebutuhan dapur profesional Anda
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <a 
-                    href="https://wa.me/6282133222726" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-lg bg-green-500 hover:bg-green-600 border-none gap-2"
-                  >
-                    <img 
-                      src="/assets/whatsapp.png" 
-                      alt="WhatsApp" 
-                      className="w-6 h-6"
-                    />
-                    Chat WhatsApp
-                  </a>
-                  <a 
-                    href="/contact" 
-                    className="btn btn-lg bg-white text-primary hover:bg-white/90"
-                  >
-                    Hubungi Kami
-                  </a>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section> */}
+       
       </main>
 
-      <Footer />
+     
     </>
   );
 };

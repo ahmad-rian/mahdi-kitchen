@@ -307,7 +307,7 @@ const Show = ({ product, auth }) => {
                 </div>
             </main>
 
-            <Footer />
+           
         </>
     );
 };

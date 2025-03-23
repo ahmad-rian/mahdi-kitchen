@@ -6,11 +6,28 @@ import {
   Clock, 
   Instagram, 
   Facebook, 
-  Send,
+  Youtube,
   Mail,
   ExternalLink 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+// Custom TikTok icon
+const TikTokIcon = ({ size = 20 }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+  </svg>
+);
 
 const Footer = () => {
   const socialLinks = [
@@ -27,43 +44,22 @@ const Footer = () => {
       color: 'hover:text-blue-400'
     },
     {
+      name: 'YouTube',
+      icon: <Youtube size={20} />,
+      href: 'http://www.youtube.com/@mahdybinggo1980',
+      color: 'hover:text-red-600'
+    },
+    {
       name: 'TikTok',
-      icon: <Send size={20} />,
+      icon: <TikTokIcon size={20} />,
       href: 'https://tiktok.com/@Mahdy.Surabaya',
-      color: 'hover:text-pink-400'
+      color: 'hover:text-pink-500'
     }
   ];
 
   return (
     <footer className="bg-gradient-to-b from-base-200 to-base-300">
       <div className="max-w-7xl mx-auto">
-        {/* Newsletter Section */}
-        {/* <div className="py-12 px-4">
-          <div className="bg-base-100 rounded-2xl p-8 shadow-xl">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
-                <p className="text-base-content/70">
-                  Subscribe untuk mendapatkan info terbaru dari kami
-                </p>
-              </div>
-              <div className="flex-1 w-full">
-                <div className="join w-full">
-                  <input 
-                    type="email" 
-                    placeholder="Email anda..." 
-                    className="input input-bordered join-item flex-1" 
-                  />
-                  <button className="btn btn-primary join-item">
-                    Subscribe
-                    <Mail size={18} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 px-4 py-16">
           {/* Brand Column */}
@@ -81,7 +77,7 @@ const Footer = () => {
               </div>
             </motion.div>
             <p className="text-base-content/70 leading-relaxed">
-              Memasak Lebih Mudah, Dengan Binggo* . Solusi peralatan dapur profesional untuk bisnis Anda.
+            Memasak Lebih Mudah Dengan Binggo Complete Kitchen
             </p>
           </div>
 
@@ -94,13 +90,13 @@ const Footer = () => {
             <ul className="space-y-4">
               <li>
                 <a 
-                  href="tel:082133222726" 
+                  href="tel:085726220844" 
                   className="flex items-center gap-3 text-base-content/70 hover:text-primary transition-colors"
                 >
                   <div className="w-10 h-10 rounded-lg bg-base-100 flex items-center justify-center shadow-sm">
                     <Phone size={18} />
                   </div>
-                  <span>082133222726</span>
+                  <span>085726220844</span>
                 </a>
               </li>
               <li>
@@ -116,7 +112,7 @@ const Footer = () => {
                   <div className="w-10 h-10 rounded-lg bg-base-100 flex items-center justify-center shadow-sm">
                     <Clock size={18} />
                   </div>
-                  <span>Senin - Sabtu: 9:00 - 17:00</span>
+                  <span>Senin - Sabtu: 8:00 - 17:00</span>
                 </div>
               </li>
             </ul>
@@ -126,7 +122,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              {['Products', 'About Us', 'Contact', 'FAQ'].map((item) => (
+              {['Products', 'About Us', 'Contact', ].map((item) => (
                 <li key={item}>
                   <a 
                     href={`/${item.toLowerCase().replace(' ', '-')}`}
@@ -159,23 +155,17 @@ const Footer = () => {
               ))}
             </div>
             <p className="text-base-content/70 leading-relaxed">
-              Workshop Kami Di Purwokerto Barat, Belakang Balai Desa Pasir Wetan (Lapangan Volly)
+            Workshop Kami Di Purwokerto Barat, Belakang Balai Desa Pasir Wetan (Lapangan Proyek)
             </p>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-base-content/10">
-          <div className="container mx-auto px-4 py-6">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-base-content/70 text-sm">
-                &copy; {new Date().getFullYear()} Binggo Complete Kitchen. All rights reserved.
-              </p>
-              <div className="flex gap-6 text-sm text-base-content/70">
-                <a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a>
-                <a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a>
-              </div>
-            </div>
+          <div className="container mx-auto px-4 py-6 text-center">
+            <p className="text-base-content/70 text-sm">
+              &copy; {new Date().getFullYear()} Binggo Complete Kitchen. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

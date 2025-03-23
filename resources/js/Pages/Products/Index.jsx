@@ -134,10 +134,10 @@ const Index = ({ products, categories, filters, auth }) => {
                                 transition={{ duration: 0.5 }}
                             >
                                 <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                                    Our Products
+                                Produk Kami
                                 </h1>
                                 <p className="text-xl text-base-content/80">
-                                    Discover our high-quality kitchen equipment collection
+                                Temukan koleksi peralatan dapur berkualitas tinggi kami
                                 </p>
                             </motion.div>
                         </div>
@@ -216,7 +216,7 @@ const Index = ({ products, categories, filters, auth }) => {
 
                                             {/* Sorting Filter */}
                                             <div>
-                                                <label className="block text-sm font-medium mb-2">Sort By</label>
+                                                <label className="block text-sm font-medium mb-2">Sort By ( Urutkan Dari )</label>
                                                 <Select 
                                                     value={filters.sort || 'latest'}
                                                     onValueChange={(value) => handleFilterChange({ sort: value })}
@@ -225,11 +225,11 @@ const Index = ({ products, categories, filters, auth }) => {
                                                         <SelectValue placeholder="Sort By" />
                                                     </SelectTrigger>
                                                     <SelectContent>
-                                                        <SelectItem value="latest">Latest</SelectItem>
-                                                        <SelectItem value="price_low">Price: Low to High</SelectItem>
-                                                        <SelectItem value="price_high">Price: High to Low</SelectItem>
-                                                        <SelectItem value="popular">Most Popular</SelectItem>
-                                                        <SelectItem value="rating">Highest Rated</SelectItem>
+                                                        <SelectItem value="latest">Latest ( Terbaru )</SelectItem>
+                                                        <SelectItem value="price_low">Price: Low to High ( Rendah ke Tinggi )</SelectItem>
+                                                        <SelectItem value="price_high">Price: High to Low ( Tinggi ke Rendah )</SelectItem>
+                                                        <SelectItem value="popular">Most Popular ( Paling Populer )</SelectItem>
+                                                        <SelectItem value="rating">Highest Rated ( Nilai Tertinggi )</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                             </div>
@@ -305,7 +305,7 @@ const Index = ({ products, categories, filters, auth }) => {
                 </section>
             </main>
 
-            <Footer />
+            
         </>
     );
 };
