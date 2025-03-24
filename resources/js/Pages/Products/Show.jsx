@@ -216,9 +216,9 @@ const Show = ({ product, auth }) => {
                                         </Badge>
                                     )}
                                 </div>
-                                <Button size="lg" className="w-full">
-                                    Add to Cart
-                                </Button>
+                                <Button size="lg" className="w-full" onClick={() => window.open("https://wa.me/6285726220844")}>
+    Contact via WhatsApp
+</Button>
                             </div>
                         </motion.div>
                     </div>
