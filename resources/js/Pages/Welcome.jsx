@@ -66,14 +66,6 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
     }
   };
 
-  // Get background position based on slide ID for mobile devices
-  const getBackgroundPosition = (slideId) => {
-    if (isMobile && slideId === 1) {
-      return '85% center'; // Show the right side of the image for slide ID 1 on mobile
-    }
-    return 'center'; // Default position for all other slides
-  };
-
   // Product categories dengan slug yang sesuai dengan database
   const productCategories = [
     { id: 1, image: '/assets/carousel/lainnya/1.png', filterSlug: 'peralatan-memasak', name: 'Peralatan Memasak' },
@@ -84,15 +76,43 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
     { id: 6, image: '/assets/carousel/lainnya/6.png', filterSlug: 'pencucian-piring-sanitasi', name: 'Pencucian Piring & Sanitasi' }
   ];
 
-  // Carousel slides
+  // Updated carousel slides with separate landscape and portrait images
   const carouselSlides = [
-    { id: 1, image: "/assets/carousel/atas/1.png" },
-    { id: 2, image: "/assets/carousel/atas/2.png" },
-    { id: 3, image: "/assets/carousel/atas/3.png" },
-    { id: 4, image: "/assets/carousel/atas/4.png" },
-    { id: 5, image: "/assets/carousel/atas/5.jpg" },
-    { id: 6, image: "/assets/carousel/atas/6.png" },
-    { id: 7, image: "/assets/carousel/atas/7.png" }
+    { 
+      id: 1, 
+      landscapeImage: "/assets/carousel/atas/landscape/1.png",
+      portraitImage: "/assets/carousel/atas/potrait/1.png"
+    },
+    { 
+      id: 2, 
+      landscapeImage: "/assets/carousel/atas/landscape/2.png",
+      portraitImage: "/assets/carousel/atas/potrait/2.png"
+    },
+    { 
+      id: 3, 
+      landscapeImage: "/assets/carousel/atas/landscape/3.png",
+      portraitImage: "/assets/carousel/atas/potrait/3.png"
+    },
+    { 
+      id: 4, 
+      landscapeImage: "/assets/carousel/atas/landscape/4.png",
+      portraitImage: "/assets/carousel/atas/potrait/4.png"
+    },
+    { 
+      id: 5, 
+      landscapeImage: "/assets/carousel/atas/landscape/5.png",
+      portraitImage: "/assets/carousel/atas/potrait/5.png"
+    },
+    { 
+      id: 6, 
+      landscapeImage: "/assets/carousel/atas/landscape/6.png",
+      portraitImage: "/assets/carousel/atas/potrait/6.png"
+    },
+    { 
+      id: 7, 
+      landscapeImage: "/assets/carousel/atas/landscape/6.png", // Assuming there's a 7th image or using 6th as fallback
+      portraitImage: "/assets/carousel/atas/potrait/6.png"
+    }
   ];
 
   return (
@@ -105,13 +125,16 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
         />
       </Head>
       
-      {/* Main Carousel - Mobile optimized */}
+      {/* Spacer to account for fixed navbar - only on desktop */}
+      {!isMobile && <div className="h-16"></div>}
+      
+      {/* Main Carousel - Responsive with different images for mobile/desktop */}
       <div className="relative w-full">
-        {/* Carousel container with aspect ratio based on device */}
+        {/* Carousel container with optimized aspect ratio */}
         <div 
           ref={carouselRef}
           className="relative w-full overflow-hidden"
-          style={{ height: isMobile ? "75vh" : "calc(100vh - 64px)" }}
+          style={{ height: isMobile ? "100vh" : "calc(90vh - 64px)" }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -129,55 +152,58 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
               }`}
             >
               <div 
-                className="w-full h-full bg-center bg-cover md:bg-contain md:bg-no-repeat"
+                className="w-full h-full bg-center bg-cover"
                 style={{ 
-                  backgroundImage: `url(${slide.image})`,
-                  backgroundPosition: getBackgroundPosition(slide.id)
+                  backgroundImage: `url(${isMobile ? slide.portraitImage : slide.landscapeImage})`,
+                  backgroundPosition: 'center',
+                  backgroundSize: isMobile ? 'cover' : '100% auto'
                 }}
               >
-                {/* Semi-transparent overlay for better text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
+                {/* Enhanced overlay for better text contrast and elegance */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/10"></div>
               </div>
             </div>
           ))}
 
-          {/* Navigation arrows - visible on all screens */}
+          {/* Enhanced navigation arrows */}
           <button 
             onClick={prevSlide}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 rounded-full p-1 md:p-2 backdrop-blur-sm transition-all duration-300"
+            className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 rounded-full p-2 md:p-3 backdrop-blur-sm transition-all duration-300 shadow-md"
             aria-label="Previous slide"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6 text-white">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
           
           <button 
             onClick={nextSlide}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 rounded-full p-1 md:p-2 backdrop-blur-sm transition-all duration-300"
+            className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 rounded-full p-2 md:p-3 backdrop-blur-sm transition-all duration-300 shadow-md"
             aria-label="Next slide"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6 text-white">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
           </button>
 
-          {/* Slide indicators - Mobile optimized */}
-          <div className="absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-1 md:gap-2">
+          {/* Elegant slide indicators */}
+          <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-2 md:gap-3">
             {Array.from({ length: totalSlides }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`h-1.5 md:h-2 rounded-full transition-all duration-300 ${
-                  index === currentSlide ? 'bg-red-500 w-6 md:w-8' : 'bg-white/60 w-1.5 md:w-2 hover:bg-white/80'
+                className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${
+                  index === currentSlide ? 'bg-red-600 w-8 md:w-10' : 'bg-white/70 w-2 md:w-2.5 hover:bg-white/90'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
+          
+          
         </div>
 
-        {/* Product Categories Section - Modified to 3x2 grid instead of 6 columns */}
+        {/* Product Categories Section - Original 3x3 grid with refined styling */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {productCategories.map((category) => (
             <Link
@@ -187,12 +213,12 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
             >
               <div className="relative aspect-square overflow-hidden">
                 <div 
-                  className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                   style={{ backgroundImage: `url(${category.image})` }}
                 ></div>
-                {/* Improved text overlay with gradient for better visibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                  <div className="w-full p-2 md:p-3 text-white font-medium md:font-semibold text-center text-sm md:text-base">
+                {/* Refined text overlay with better visibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+                  <div className="w-full p-3 md:p-4 text-white font-medium md:font-semibold text-center text-sm md:text-base">
                     {category.name}
                   </div>
                 </div>
