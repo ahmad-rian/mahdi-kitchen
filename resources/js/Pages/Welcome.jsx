@@ -8,7 +8,7 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
   const [isMobile, setIsMobile] = useState(false);
   const carouselRef = useRef(null);
   
-  const totalSlides = 7;
+  const totalSlides = 6;
 
   // Check if device is mobile
   useEffect(() => {
@@ -106,11 +106,6 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
     { 
       id: 6, 
       landscapeImage: "/assets/carousel/atas/landscape/6.png",
-      portraitImage: "/assets/carousel/atas/potrait/6.png"
-    },
-    { 
-      id: 7, 
-      landscapeImage: "/assets/carousel/atas/landscape/6.png", // Assuming there's a 7th image or using 6th as fallback
       portraitImage: "/assets/carousel/atas/potrait/6.png"
     }
   ];
