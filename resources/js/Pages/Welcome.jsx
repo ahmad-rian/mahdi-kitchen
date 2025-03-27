@@ -123,18 +123,21 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
       {/* Spacer to account for fixed navbar - only on desktop */}
       {!isMobile && <div className="h-16"></div>}
       
-      {/* Main Carousel - Responsive with different images for mobile/desktop */}
+      {/* Main Carousel - Combined approach for mobile/desktop */}
       <div className="relative w-full">
-        {/* Carousel container with optimized aspect ratio */}
+        {/* Carousel container with fixed height for desktop and full height for mobile */}
         <div 
           ref={carouselRef}
           className="relative w-full overflow-hidden"
-          style={{ height: isMobile ? "100vh" : "calc(90vh - 64px)" }}
+          style={{ 
+            height: isMobile ? "100vh" : "calc(70vh - 64px)",
+            maxHeight: isMobile ? "none" : "600px" 
+          }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Slides with fade and slide transitions */}
+          {/* Slides with improved transitions */}
           {carouselSlides.map((slide, index) => (
             <div 
               key={slide.id}
@@ -146,17 +149,27 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
                     : 'opacity-0 translate-x-full z-0'
               }`}
             >
-              <div 
-                className="w-full h-full bg-center bg-cover"
-                style={{ 
-                  backgroundImage: `url(${isMobile ? slide.portraitImage : slide.landscapeImage})`,
-                  backgroundPosition: 'center',
-                  backgroundSize: isMobile ? 'cover' : '100% auto'
-                }}
-              >
-                {/* Enhanced overlay for better text contrast and elegance */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/10"></div>
-              </div>
+              {isMobile ? (
+                <div 
+                  className="w-full h-full bg-center bg-cover"
+                  style={{ 
+                    backgroundImage: `url(${slide.portraitImage})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover'
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/10"></div>
+                </div>
+              ) : (
+                <>
+                  <img 
+                    src={slide.landscapeImage}
+                    alt={`Slide ${slide.id}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/10"></div>
+                </>
+              )}
             </div>
           ))}
 
@@ -194,12 +207,10 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
               />
             ))}
           </div>
-          
-          
         </div>
 
-        {/* Product Categories Section - Original 3x3 grid with refined styling */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        {/* Product Categories Section - Grid layout with proper sizing */}
+        <div className="grid grid-cols-2 md:grid-cols-3">
           {productCategories.map((category) => (
             <Link
               key={category.id}
@@ -207,10 +218,11 @@ export default function Welcome({ auth, canLogin, canRegister, featuredProducts,
               className="group relative overflow-hidden"
             >
               <div className="relative aspect-square overflow-hidden">
-                <div 
-                  className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${category.image})` }}
-                ></div>
+                <img 
+                  src={category.image} 
+                  alt={category.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
                 {/* Refined text overlay with better visibility */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
                   <div className="w-full p-3 md:p-4 text-white font-medium md:font-semibold text-center text-sm md:text-base">
